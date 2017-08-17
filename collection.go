@@ -89,6 +89,16 @@ func (col *Collection) ToLocale() []*Locale {
 	return locales
 }
 
+// ToEntry cast Items to Entry model
+func (col *Collection) ToEntry() []*Entry {
+	var entries []*Entry
+
+	byteArray, _ := json.Marshal(col.Items)
+	json.NewDecoder(bytes.NewReader(byteArray)).Decode(&entries)
+
+	return entries
+}
+
 // ToAsset cast Items to Asset model
 func (col *Collection) ToAsset() []*Asset {
 	var assets []*Asset
