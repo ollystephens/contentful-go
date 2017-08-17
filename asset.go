@@ -74,6 +74,7 @@ func (asset *Asset) MarshalJSON() ([]byte, error) {
 	return json.Marshal(payload)
 }
 
+/*** temporarily removed as it's recursive if localized -> BANG
 // UnmarshalJSON for custom json unmarshaling
 func (asset *Asset) UnmarshalJSON(data []byte) error {
 	var payload map[string]interface{}
@@ -122,6 +123,7 @@ func (asset *Asset) UnmarshalJSON(data []byte) error {
 
 	return nil
 }
+***/
 
 // GetVersion returns entity version
 func (asset *Asset) GetVersion() int {
