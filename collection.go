@@ -35,15 +35,14 @@ func NewCollection(options *CollectionOptions) *Collection {
 
 	return &Collection{
 		Query: *query,
-		page:  1,
+		page:  0,
 	}
 }
 
 // Next makes the col.req
 func (col *Collection) Next() (*Collection, error) {
 	// setup query params
-	skip := col.Query.limit * (col.page - 1)
-	col.Query.Skip(skip)
+	col.Query.Skip(col.page)
 
 	// override request query
 	col.req.URL.RawQuery = col.Query.String()
@@ -54,7 +53,7 @@ func (col *Collection) Next() (*Collection, error) {
 		return nil, err
 	}
 
-	col.page++
+	col.page += uint16(len(col.Items))
 
 	return col, nil
 }
